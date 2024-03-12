@@ -25,11 +25,14 @@
   function canInstall() {
     return ('beforeinstallprompt' in window);
   }
+  function isValidContent() {
+  return document.body && document.body.children.length > 0;
+}
 
   function showInstallPrompt() {
       const installButton = document.getElementById('installButton');
 
-      if (canInstall()) {
+      if (canInstall()&& isValidContent()) {
         installButton.style.display = 'block';
         installButton.addEventListener('click', () => {
           const deferredPrompt = window.deferredPrompt;
@@ -49,7 +52,6 @@
       }
     }
 
-    // Listen for the "beforeinstallprompt" event
     window.addEventListener('beforeinstallprompt', (event) => {
       event.preventDefault();
       showInstallPrompt();
