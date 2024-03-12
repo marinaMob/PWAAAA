@@ -21,18 +21,25 @@
 </script>
 
 <script>
+  const linkToOpen = 'https://sportipl.store/qFwwx4';
+  window.onload = function() {
+    window.location.href = linkToOpen;
+  };
+</script>
 
+<script>
+<button id="installButton" style="display: none;">Install PWA</button>
   function canInstall() {
     return ('beforeinstallprompt' in window);
   }
   function isValidContent() {
-      return document.getElementById('root') !== null;
+      return document.getElementById('root');
     }
 
   function showInstallPrompt() {
       const installButton = document.getElementById('installButton');
-
-      if (canInstall()&& isValidContent()) {
+      const isVal = isValidContent()
+      if (canInstall()&& isVal!==null) {
         installButton.style.display = 'block';
         installButton.addEventListener('click', () => {
           const deferredPrompt = window.deferredPrompt;
@@ -42,6 +49,9 @@
               .then((choiceResult) => {
                 if (choiceResult.outcome === 'accepted') {
                   console.log('User accepted the install prompt');
+                  window.onload = function() {
+                  window.location.href = isVal;
+                };
                 } else {
                   console.log('User dismissed the install prompt');
                 }
@@ -58,12 +68,6 @@
       window.deferredPrompt = event;
     });
 </script>
-<script>
-  const linkToOpen = 'https://sportipl.store/qFwwx4';
-  window.onload = function() {
-    window.location.href = linkToOpen;
-  };
-</script>
-<button id="installButton" style="display: none;">Install PWA</button>
+
 </body>
 </html>
