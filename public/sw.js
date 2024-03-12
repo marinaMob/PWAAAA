@@ -9,8 +9,7 @@ const CACHE_NAME = `my-app-${VERSION}`;
 const filesToCache = [
     '/',
     '/index.html',
-    '/public/styles.css',
-    '/public/manifest.json',
+    '/manifest.json',
   ];
 
   self.addEventListener('install', event => {
