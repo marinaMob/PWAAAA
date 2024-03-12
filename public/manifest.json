@@ -2,7 +2,7 @@
   "name": "Candy Boom",
   "short_name": "Short Name",
   "description": "Your app description",
-  "start_url": "./index.html",
+  "start_url": "https://main--candyappp.netlify.app",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
