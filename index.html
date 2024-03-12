@@ -25,42 +25,30 @@
     window.location.href = linkToOpen;
   };
 </script> -->
-<script>
+< <script>
   // Function to check if the PWA can be installed
   function canInstall() {
     return ('beforeinstallprompt' in window);
   }
 
-  // Function to show a custom install prompt
-  function showInstallPrompt() {
-    const installButton = document.getElementById('installButton');
-
-    // Show the install button only if the PWA can be installed
+  // Function to show an alert and install the PWA
+  function showInstallAlert() {
     if (canInstall()) {
-      installButton.style.display = 'block';
+      alert("Install our app for a better experience!");
+    }
+  }
 
-      // Listen for the "Install" button click
-      installButton.addEventListener('click', () => {
-        const deferredPrompt = window.deferredPrompt;
+  // Function to check if the PWA is installed
+  function isPWAInstalled() {
+    return (window.matchMedia('(display-mode: standalone)').matches);
+  }
 
-        if (deferredPrompt) {
-          // Show the browser's default install prompt
-          deferredPrompt.prompt();
-
-          // Wait for the user to respond
-          deferredPrompt.userChoice
-            .then((choiceResult) => {
-              if (choiceResult.outcome === 'accepted') {
-                console.log('User accepted the install prompt');
-              } else {
-                console.log('User dismissed the install prompt');
-              }
-
-              // Reset the deferredPrompt variable
-              window.deferredPrompt = null;
-            });
-        }
-      });
+  // Function to display the link after installation
+  function showLinkAfterInstall() {
+    if (isPWAInstalled()) {
+      alert("Thank you for installing our app! Click OK to visit the app.");
+      // Replace 'https://your-app-link' with the actual link to your app
+      window.location.href = "https://google.com";
     }
   }
 
@@ -69,14 +57,17 @@
     // Prevent the default browser install prompt
     event.preventDefault();
 
-    // Store the event for later use
-    window.deferredPrompt = event;
+    // Show the install alert
+    showInstallAlert();
 
-    // Show the custom install prompt
-    showInstallPrompt();
+    // Show the link after installation
+    event.prompt()
+      .then((userChoice) => {
+        if (userChoice.outcome === 'accepted') {
+          showLinkAfterInstall();
+        }
+      });
   });
 </script>
-<button id="installButton" style="display: none;">Install PWA</button>
-
 </body>
 </html>
