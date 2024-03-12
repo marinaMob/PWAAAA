@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="manifest" href="/manifest.json">
+  <link rel="manifest" href="/public/manifest.json">
   <title>Your PWA Title</title>
 </head>
-
+§
 <body>
   <!-- Our app-index web component. This component is defined in src/pages/app-index.ts-->
   <app-index></app-index>
@@ -15,12 +15,12 @@
   <script>
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js')
-      .then(registration => {
-        console.log('Service Worker registered with scope:', registration.scope);
-      })
-      .catch(error => {
-        console.error('Service Worker registration failed:', error);
-      });
+  .then(registration => {
+    console.log('Service Worker registered with scope:', registration.scope);
+  })
+  .catch(error => {
+    console.error('Service Worker registration failed:', error);
+  });
   }
 </script>
 </body>
