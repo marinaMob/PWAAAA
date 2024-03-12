@@ -26,8 +26,8 @@
     return ('beforeinstallprompt' in window);
   }
   function isValidContent() {
-  return document.body && document.body.children.length > 0;
-}
+      return document.getElementById('root') !== null;
+    }
 
   function showInstallPrompt() {
       const installButton = document.getElementById('installButton');
