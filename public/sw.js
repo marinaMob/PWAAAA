@@ -9,7 +9,7 @@ const CACHE_NAME = `candy-app-${VERSION}`;
 const filesToCache = [
     '/',
     '/index.html',
-    '/public/manifest.json',
+    '/manifest.json',
   ];
 
   self.addEventListener('install', event => {
