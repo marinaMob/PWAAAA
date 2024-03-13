@@ -34,8 +34,8 @@
   }
 
   function isValidContent() {
-    const rootElement = document.getElementById('root');
-    return rootElement && rootElement.innerHTML.trim() !== '';
+    const rootElement = document.body;
+    return rootElement && rootElement.innerText.trim() !== '';
   }
 
   function showInstallPrompt() {
