@@ -32,9 +32,11 @@
   function canInstall() {
     return ('beforeinstallprompt' in window);
   }
+
   function isValidContent() {
-      return document.getElementById('root') !== null;
-    }
+    const rootElement = document.getElementById('root');
+    return rootElement && rootElement.innerHTML.trim() !== '';
+  }
 
   function showInstallPrompt() {
       const installButton = document.getElementById('installButton');
@@ -63,15 +65,12 @@
       window.deferredPrompt = event;
     });
 
-    // Check for valid content and show install prompt
     window.addEventListener('DOMContentLoaded', () => {
       showInstallPrompt();
     });
 
-    // Listen for the appinstalled event
     window.addEventListener('appinstalled', (event) => {
       console.log('App installed successfully!');
-      // Redirect to the desired link after the app is installed
       window.location.href = 'https://google.com';
     });
 </script>
