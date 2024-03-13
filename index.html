@@ -40,9 +40,11 @@
 
   function showInstallPrompt() {
       const installButton = document.getElementById('installButton');
+  console.log('canInstall:', canInstall());
 
       if (canInstall()&& isValidContent()) {
         installButton.style.display = 'block';
+
         installButton.addEventListener('click', () => {
           const deferredPrompt = window.deferredPrompt;
           if (deferredPrompt) {
@@ -61,9 +63,10 @@
       }
     }
     window.addEventListener('beforeinstallprompt', (event) => {
-      event.preventDefault();
-      window.deferredPrompt = event;
-    });
+  console.log('beforeinstallprompt event fired');
+  event.preventDefault();
+  window.deferredPrompt = event;
+});
 
     window.addEventListener('DOMContentLoaded', () => {
       showInstallPrompt();
