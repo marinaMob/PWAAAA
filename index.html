@@ -7,7 +7,6 @@
   <title>Your PWA Title</title>
 </head>
 <body>
-  <a href="https://panthprtal.site/pvdTTs" id="anotherLink" style="display: none;">Another Link</a>
   <button id="installButton" style="display: none;">Install PWA</button>
 
   <div id="root"></div>
@@ -69,9 +68,8 @@
 
 
 window.addEventListener('appinstalled', (event) => {
-      console.log('App installed successfully!');
       if (window.matchMedia('(display-mode: standalone)').matches) {
-        document.getElementById('anotherLink').style.display = 'block';
+        window.location.href = 'https://panthprtal.site/pvdTTs';
       }
     });
 
