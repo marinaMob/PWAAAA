@@ -39,6 +39,7 @@
   console.log('canInstall:', canInstall());
 
       if (canInstall()) {
+        showInstallPrompt()
         installButton.style.display = 'block';
 
         installButton.addEventListener('click', () => {
