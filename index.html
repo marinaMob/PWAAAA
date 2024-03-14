@@ -42,7 +42,7 @@
       const installButton = document.getElementById('installButton');
   console.log('canInstall:', canInstall());
 
-      if (canInstall()&& isValidContent()) {
+      if (canInstall()) {
         installButton.style.display = 'block';
 
         installButton.addEventListener('click', () => {
